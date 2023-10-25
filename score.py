@@ -8,6 +8,8 @@ shipx = 400 - 16
 shipy = 400
 pygame.init()
 mixer.init()
+score = 0
+
 
 # Set clock
 clock = pygame.time.Clock()
@@ -15,8 +17,21 @@ clock = pygame.time.Clock()
 # Set display
 screen = pygame.display.set_mode((800, 600))
 #add title graphic
-pygame.display.set_caption("Galactic Eggs")
+pygame.display.set_caption("Vormware Arcade")
 title = pygame.image.load("images/title.png")
+
+# Title text and font
+title_text = "Space Shooter X"
+font = pygame.font.Font(None, 36)
+title_render = font.render(title_text, True, (255, 255, 255))
+
+# Create a transparent surface for the title
+title_surface = pygame.Surface((800, 600), pygame.SRCALPHA)
+title_surface.blit(title_render, (400 - title_render.get_width() // 2, 300 - title_render.get_height() // 2))
+
+# Score font and rendering
+score_font = pygame.font.Font(None, 36)
+score_text = score_font.render("Score: " + str(score), True, (255, 255, 255))
 
 # Set sprites
 playerShip = pygame.image.load("images/ship.png")
@@ -190,8 +205,11 @@ while True:
             if is_collision(bullet[0], bullet[1], enemy[0], enemy[1]):
                 bullets.remove(bullet)
                 enemies.remove(enemy)
+                #increase score
+                score += 1
+                score_text = score_font.render("Score: " + str(score), True, (255, 255, 255))
+             
             
-
     # Remove enemies that have gone off the screen
     enemies = [enemy for enemy in enemies if enemy[1] < 600]
 
@@ -212,7 +230,8 @@ while True:
     else:
         enemy_spawn_delay -= 1
 
-   
+   # Display the score
+    screen.blit(score_text, (10, 10))  # Adjust the position as needed
 
     # Update display
     pygame.display.update()
