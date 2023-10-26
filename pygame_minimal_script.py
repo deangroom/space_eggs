@@ -5,29 +5,31 @@ import sys
 pygame.init()
 
 # Constants for screen dimensions
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 400
+SCREEN_HEIGHT = 300
+
+clock=pygame.time.Clock()
 
 # Create the game window
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("My Game")
 
 # Game loop
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+while True:
+  for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+      pygame.quit()
+      sys.exit()
+          
 
-    # Game logic goes here
+  # Game logic goes here
 
-    # Drawing and rendering
-    screen.fill((0, 0, 0))  # Clear the screen with a black background
+  # Drawing and rendering
+  screen.fill((0, 0, 0))  # Clear the screen with a black background
 
-    # Drawing code goes here
+  # Drawing code goes here
 
-    pygame.display.update()  # Update the display
+  pygame.display.update()  # Update the display
 
-# Clean up and quit Pygame
-pygame.quit()
-sys.exit()
+  # Set Clock Tick
+  clock.tick(60)
