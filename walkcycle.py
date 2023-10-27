@@ -9,10 +9,12 @@ screen = pygame.display.set_mode((400, 300))
 # set clock
 clock = pygame.time.Clock()
 
-# Load the sprite images
+# Load the sprite image
 sprite_images = []
 for i in range(1, 9):
     sprite_images.append(pygame.image.load(f"images/Run/Warrior_Run_{i}.png"))
+    #scale the sprite image
+    sprite_images[i - 1] = pygame.transform.scale(sprite_images[i - 1], (sprite_images[i - 1].get_width() * 2, sprite_images[i - 1].get_height() * 2))
 
 # Define the sprite's position
 sprite_x = 200
@@ -84,7 +86,7 @@ while running:
     pygame.display.update()
 
     # Tick the clock
-    clock.tick(60)
+    clock.tick(120)
 
 
 # Quit Pygame
