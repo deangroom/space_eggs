@@ -35,6 +35,12 @@ for i in range(1, 7):
     scaled_image = pygame.transform.scale(image, (100, 100))
     player_run.append(scaled_image)
 
+# Create a separate list to store the flipped running animation frames
+player_run_flipped = []
+for i in range(1, 7):
+    image = pygame.transform.flip(player_run[i-1], True, False)
+    player_run_flipped.append(image)
+
 # Set the initial player animation frame
 player_frame = 0
 
@@ -71,7 +77,7 @@ while running:
             bg_x = 0
         game_started = True
         player_frame += 1
-        if player_frame >= len(player_run):
+        if player_frame >= len(player_run_flipped):
             player_frame = 0
     elif keys[pygame.K_RIGHT]:
         bg_x -= bg_speed
@@ -92,7 +98,10 @@ while running:
 
     # Blit the player onto the screen
     if game_started:
-        screen.blit(player_run[player_frame], (player_x, player_y))
+        if keys[pygame.K_LEFT]:
+            screen.blit(player_run_flipped[player_frame], (player_x, player_y))
+        else:
+            screen.blit(player_run[player_frame], (player_x, player_y))
     else:
         screen.blit(player_idle[player_frame], (player_x, player_y))
 
@@ -100,7 +109,7 @@ while running:
     pygame.display.update()
 
     # Tick the clock
-    clock.tick(30)
+    clock.tick(10)
 
 # Quit Pygame
 pygame.quit()
