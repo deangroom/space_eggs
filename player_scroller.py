@@ -8,7 +8,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 # Set the screen size
-screen_width = 320
+screen_width = 800
 screen_height = 180
 
 # Create the screen
@@ -109,7 +109,7 @@ while running:
     pygame.display.update()
 
     # Tick the clock
-    clock.tick(10)
+    clock.tick(60)
 
 # Quit Pygame
 pygame.quit()
