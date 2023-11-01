@@ -43,3 +43,13 @@ button = Tk.Button(window, text="Click Me")
 button.pack()
 
 window.mainloop()
+
+'''
+root.mainloop(): The application will remain in the event loop 
+until we close the window. The event loop is used to trigger 
+the events on a users action.
+An event is the any action done by the user such as a 
+mouse click, keystrokes, or even an auto-generated 
+event such as a timer.
+
+'''
