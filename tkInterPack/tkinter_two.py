@@ -2,7 +2,7 @@ import tkinter as Tk
 
 # Create a window 400 x 400
 window = Tk.Tk()
-window.title("My First window")
+window.title("My second window")
 window.geometry("400x400")
 
 #add a label to the window
